@@ -13,9 +13,9 @@
 #include <string>
 #include <algorithm>
 
-#include "imgui.h"
-#include "imgui_impl_win32.h"
-#include "imgui_impl_dx11.h"
+#include "imgui/imgui.h"
+#include "imgui/imgui_impl_win32.h"
+#include "imgui/imgui_impl_dx11.h"
 #include <d3d11.h>
 
 #pragma comment(lib, "ws2_32.lib")
@@ -23,7 +23,7 @@
 #pragma comment(lib, "d3d11.lib")
 #pragma comment(lib, "shlwapi.lib")
 
-// --- Структуры данных ---
+// --- Г‘ГІГ°ГіГЄГІГіГ°Г» Г¤Г Г­Г­Г»Гµ ---
 struct ProcessInfo {
     DWORD pid;
     std::string name;
@@ -32,14 +32,14 @@ struct ProcessInfo {
     int threatScore;
 };
 
-// --- Глобальные переменные ---
+// --- ГѓГ«Г®ГЎГ Г«ГјГ­Г»ГҐ ГЇГҐГ°ГҐГ¬ГҐГ­Г­Г»ГҐ ---
 std::vector<ProcessInfo> foundProcesses;
 ID3D11Device* g_pd3dDevice = nullptr;
 ID3D11DeviceContext* g_pd3dDeviceContext = nullptr;
 IDXGISwapChain* g_pSwapChain = nullptr;
 ID3D11RenderTargetView* g_mainRenderTargetView = nullptr;
 
-// --- Вспомогательные функции анализа ---
+// --- Г‚Г±ГЇГ®Г¬Г®ГЈГ ГІГҐГ«ГјГ­Г»ГҐ ГґГіГ­ГЄГ¶ГЁГЁ Г Г­Г Г«ГЁГ§Г  ---
 
 const std::vector<std::string> whitelist = {
     "xraycore.exe"
@@ -123,7 +123,7 @@ void DeepScan() {
                 }
                 else {
 
-                    // --- ЭВРИСТИЧЕСКИЙ ДВИЖОК ---
+                    // --- ГќГ‚ГђГ€Г‘Г’Г€Г—Г…Г‘ГЉГ€Г‰ Г„Г‚Г€Г†ГЋГЉ ---
                     if (fullPath.find("\\Temp\\") != std::string::npos || fullPath.find("\\AppData\\Local\\") != std::string::npos) {
                         info.threatScore += 45;
                         info.notes += "[PATH] Unverified location. ";
@@ -158,7 +158,7 @@ void DeepScan() {
     free(pTcpTable);
 }
 
-// --- Рендеринг интерфейса ---
+// --- ГђГҐГ­Г¤ГҐГ°ГЁГ­ГЈ ГЁГ­ГІГҐГ°ГґГҐГ©Г±Г  ---
 
 void ShowResultWindow() {
     ImGui::SetNextWindowSize(ImVec2(800, 450), ImGuiCond_FirstUseEver);
@@ -236,7 +236,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE, LPSTR, int nCmdShow) {
     ImGui::CreateContext();
     ImGuiIO& io = ImGui::GetIO(); (void)io;
 
-    // Стиль
+    // Г‘ГІГЁГ«Гј
     ImGui::StyleColorsDark();
     ImGuiStyle& style = ImGui::GetStyle();
     style.WindowRounding = 8.0f;
