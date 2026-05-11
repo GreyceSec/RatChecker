@@ -15,7 +15,7 @@
 - **API**: Windows SDK (WinAPI, IP Helper)
 
 ## 📸 Скриншоты
-![Main Interface]((https://imgur.com/a/XtJKLip))
+[Main Interface](https://imgur.com/a/XtJKLip)
 
 ## ⚠️ Дисклеймер
 Этот инструмент создан в образовательных целях для изучения основ кибербезопасности и системного программирования. 
