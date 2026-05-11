@@ -23,7 +23,6 @@
 #pragma comment(lib, "d3d11.lib")
 #pragma comment(lib, "shlwapi.lib")
 
-// --- Ñòðóêòóðû äàííûõ ---
 struct ProcessInfo {
     DWORD pid;
     std::string name;
@@ -32,14 +31,11 @@ struct ProcessInfo {
     int threatScore;
 };
 
-// --- Ãëîáàëüíûå ïåðåìåííûå ---
 std::vector<ProcessInfo> foundProcesses;
 ID3D11Device* g_pd3dDevice = nullptr;
 ID3D11DeviceContext* g_pd3dDeviceContext = nullptr;
 IDXGISwapChain* g_pSwapChain = nullptr;
 ID3D11RenderTargetView* g_mainRenderTargetView = nullptr;
-
-// --- Âñïîìîãàòåëüíûå ôóíêöèè àíàëèçà ---
 
 const std::vector<std::string> whitelist = {
     "xraycore.exe"
@@ -123,7 +119,6 @@ void DeepScan() {
                 }
                 else {
 
-                    // --- ÝÂÐÈÑÒÈ×ÅÑÊÈÉ ÄÂÈÆÎÊ ---
                     if (fullPath.find("\\Temp\\") != std::string::npos || fullPath.find("\\AppData\\Local\\") != std::string::npos) {
                         info.threatScore += 45;
                         info.notes += "[PATH] Unverified location. ";
@@ -157,8 +152,6 @@ void DeepScan() {
     }
     free(pTcpTable);
 }
-
-// --- Ðåíäåðèíã èíòåðôåéñà ---
 
 void ShowResultWindow() {
     ImGui::SetNextWindowSize(ImVec2(800, 450), ImGuiCond_FirstUseEver);
